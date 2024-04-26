@@ -9,5 +9,8 @@ namespace pokedex.Models
 
         [JsonProperty("legacy")]
         public Uri Legacy { get; set; }
+
+        public int CriesID { get; set; }
+        public FromJson_Pokemon FromJson_Pokemon { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace pokedex
         private FromJson()
         {
             From_Pars();
-            To_Pars(FromJson_Pokemon);
+         
         }
         public static FromJson getInstance()
         {
@@ -22,7 +22,7 @@ namespace pokedex
                 instance = new FromJson();
             return instance;
         }
-        void From_Pars(int ParsCount = 12)
+        void From_Pars(int ParsCount = 3)
         {
 
             string json;
@@ -45,35 +45,15 @@ namespace pokedex
 
             using (dbConnect = new dbConnect())
             {
-              
-                    dbConnect.FromJson_Pokemon.AddRange(FromJson_Pokemon);
+               
+                dbConnect.FromJson_Pokemon.AddRange(FromJson_Pokemon);
                 
                 dbConnect.FromJson_Pokemons.Add(PokS);
 
                 dbConnect.SaveChanges();
             }
         }
-        void To_Pars(List<FromJson_Pokemon> Pokemon) { 
-        
-            for (int i = 0; i < Pokemon.Count; i++)
-            {
-                pokemon.Add(new Pokemon()
-                {
-                    Name = Pokemon[i].Name,
-                    base_experience = (int)Pokemon[i].BaseExperience,
-                    Stats = Pokemon[i].Stats,
-                    URL_IMG = Pokemon[i].Sprites.Other.Home.FrontDefault.ToString(),
-                    ID_POK = (int)Pokemon[i].Id,
-                    Abilities = Pokemon[i].Abilities,
-                    Types = Pokemon[i].Types
-                }) ;
-            }
-            
-            using (dbConnect = new dbConnect()) {
-                dbConnect.Pokemon.AddRange(pokemon);
-                dbConnect.SaveChanges();
-            }
-        }
+
 
     }
 }

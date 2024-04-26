@@ -1,19 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Newtonsoft.Json;
 
 namespace pokedex.Models
 {
-    
-    public class Species
+    public class Forms
     {
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("url")]
         public Uri Url { get; set; }
-        public int SpeciesID { get; set; }
+        public int FormsID { get; set; }
         public FromJson_Pokemon FromJson_Pokemon { get; set; }
     }
 }

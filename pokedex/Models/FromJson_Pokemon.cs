@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using SQLite;
 
 namespace pokedex.Models
 {
@@ -12,24 +13,24 @@ namespace pokedex.Models
 
         [JsonProperty("base_experience")]
         public long BaseExperience { get; set; }
-        /*
-                [JsonProperty("cries")]
-                public Cries Cries { get; set; }
-        */
+        
+        //[JsonProperty("cries")]
+       // public Cries Cries { get; set; }
+        
         [JsonProperty("forms")]
-        public List<Species> Forms { get; set; }
+        public List<Forms> Forms { get; set; }
 
         [JsonProperty("game_indices")]
         public List<GameIndex> GameIndices { get; set; }
 
         [JsonProperty("height")]
-        public long Height { get; set; }
-        /*
-                [JsonProperty("held_items")]
-                public string[] HeldItems { get; set; }
-        */
-        [JsonProperty("id")]
-        public int Id { get; set; }
+        public int Height { get; set; }
+        //[JsonProperty("held_items")]
+        //public string HeldItems { get; set; }
+        
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
 
         [JsonProperty("is_default")]
         public bool IsDefault { get; set; }
@@ -42,27 +43,28 @@ namespace pokedex.Models
 
         [JsonProperty("name")]
         public string Name { get; set; }
-
+        /*
         [JsonProperty("order")]
         public long Order { get; set; }
-
+        */
         [JsonProperty("past_abilities")]
         public string[] PastAbilities { get; set; }
-/*
-        [JsonProperty("past_types")]
-        public string[] PastTypes { get; set; }
-*/
+        /*
+                [JsonProperty("past_types")]
+                public string[] PastTypes { get; set; }
+        */
+        [ForeignKey("SpeciesID")]
         [JsonProperty("species")]
         public Species Species { get; set; }
-
+        [ForeignKey("SpritesID")]
         [JsonProperty("sprites")]
         public Sprites Sprites { get; set; }
 
         [JsonProperty("stats")]
-        public List<Stat> Stats { get; set; }
+        public List<Stats> Stats { get; set; }
 
         [JsonProperty("types")]
-        public List<TypeElement> Types { get; set; }
+        public List<types> Types { get; set; }
 
         [JsonProperty("weight")]
         public long Weight { get; set; }

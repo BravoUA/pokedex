@@ -3,14 +3,28 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pokedex.Models
 {
-    [NotMapped]
+
 
     public class Move
     {
         [JsonProperty("move")]
-        public Species MoveMove { get; set; }
+        public MoveMove MoveMove { get; set; }
 
         [JsonProperty("version_group_details")]
-        public VersionGroupDetail[] VersionGroupDetails { get; set; }
+        public List<VersionGroupDetail> VersionGroupDetails { get; set; }
+
+
+
+        public int MoveID { get; set; }
+        public FromJson_Pokemon FromJson_Pokemon { get; set; }
+    }
+    public class MoveMove {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public Uri Url { get; set; }
+        public int MoveMoveID { get; set; }
+        public Move Move { get; set; }
     }
 }

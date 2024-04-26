@@ -4,18 +4,29 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pokedex.Models
 {
-    [NotMapped]
+    
 
-    public class Stat
+    public class Stats
     {
         [JsonProperty("base_stat")]
-        public long BaseStat { get; set; }
+        public int BaseStat { get; set; }
 
         [JsonProperty("effort")]
-        public long Effort { get; set; }
+        public int Effort { get; set; }
 
         [JsonProperty("stat")]
-        public Species StatStat { get; set; }
+        [ForeignKey("StatID")]
+        public Stat Stat { get; set; }
+        public int StatsID { get; set; }
+        public FromJson_Pokemon FromJson_Pokemon { get; set; }
+    }
+    public class Stat {
+        [JsonProperty("name")]
+        public string name { get; set; }
+        [JsonProperty("url")]
+        public Uri Url { get; set; }
+        public int StatID { get; set; }
+        public Stats Stats { get; set; }
     }
 
 }

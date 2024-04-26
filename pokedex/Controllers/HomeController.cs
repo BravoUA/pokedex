@@ -12,6 +12,7 @@ namespace pokedex.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         List<Pokemon> pokemon = new List<Pokemon>();
+        List<FromJson_Pokemon> FromJson_Pokemon = new List<FromJson_Pokemon>();
         dbConnect dbConnect;
         public HomeController(ILogger<HomeController> logger)
         {
@@ -23,17 +24,18 @@ namespace pokedex.Controllers
             FromJson.getInstance();
 
             using (dbConnect = new dbConnect()) {
-                pokemon = dbConnect.Pokemon.ToList();
+                FromJson_Pokemon = dbConnect.FromJson_Pokemon.ToList();
             }
-   
+
+           
 
             int pageSize = 12;
             if (pg < 1) pg = 1;
 
-            int pocCount = pokemon.Count;
+            int pocCount = FromJson_Pokemon.Count;
             var pager = new Page(pocCount,pg,pageSize);
             int recSkin = (pg - 1) * pageSize;
-            var data = pokemon.Skip(recSkin).Take(pager.PageSize).ToList();
+            var data = FromJson_Pokemon.Skip(recSkin).Take(pager.PageSize).ToList();
             ViewBag.Pager = pager;
             return View(data);
         }
