@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pokedex.Models
 {
@@ -6,22 +9,11 @@ namespace pokedex.Models
     {
         [JsonProperty("count")]
         public long Count { get; set; }
-
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("previous")]
-        public object Previous { get; set; }
-
+        
         [JsonProperty("results")]
-        public Result[] Results { get; set; }
-    }
-    public partial class Result
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        public List<Result> Results { get; set; }
+        [Key]
+        public int id { get; set; }
 
-        [JsonProperty("url")]
-        public string Url { get; set; }
     }
 }

@@ -11,8 +11,8 @@ namespace pokedex.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        List<FromJson_Pokemon> pokemon = new List<FromJson_Pokemon>();
-
+        List<Pokemon> pokemon = new List<Pokemon>();
+        dbConnect dbConnect;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -20,22 +20,12 @@ namespace pokedex.Controllers
 
         public IActionResult Index(int pg = 1)
         {
-            string json;
-            using (var client = new WebClient())
-            {
-                json = client.DownloadString("https://pokeapi.co/api/v2/pokemon?limit=48&offset=0");
+            FromJson.getInstance();
+
+            using (dbConnect = new dbConnect()) {
+                pokemon = dbConnect.Pokemon.ToList();
             }
-             List<FromJson_Pokemons> pokemons = new List<FromJson_Pokemons>();
-            FromJson_Pokemons PokS = JsonConvert.DeserializeObject<FromJson_Pokemons>(json);
-            for (int i = 0; i < PokS.Results.Length; i++)
-            {
-                using (var client = new WebClient())
-                {
-                    json = client.DownloadString(PokS.Results[i].Url);
-                    
-                }
-                 pokemon.Add(JsonConvert.DeserializeObject<FromJson_Pokemon>(json));
-            }
+   
 
             int pageSize = 12;
             if (pg < 1) pg = 1;

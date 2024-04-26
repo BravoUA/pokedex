@@ -1,4 +1,4 @@
-﻿@model List<FromJson_Pokemon>
+﻿@model List<Pokemon>
 @{
     Page pager = new Page();
     int pageNo = 0;
@@ -21,14 +21,10 @@
         {
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="pokemon-card">
-                    <img src="@Model[i].Sprites.Other.Home.FrontDefault" alt="@Model[i].Name<">
+                    <img src="@Model[i].URL_IMG" alt="@Model[i].Name<">
                     <div class="pokemon-info">
                         <h5 class="text-center">@Model[i].Name</h5>
-                        Abiliti :"overgrow"
-                        Abiliti :"overgrow"
-                        Abiliti :"overgrow"
-                        base_experience:64
-
+                        base_experience: @Model[i].base_experience
                     </div>
                 </div>
             </div>
