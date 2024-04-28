@@ -72,14 +72,20 @@ namespace pokedex.Controllers
             
         }
 
-        public IActionResult TypeSelect( string typeFilter, int pg = 1)
+        public IActionResult Delete( int ID, int pg = 1)
         {
 
             using (dbConnect = new dbConnect())
             {
-                abilities = dbConnect.abilities.ToList();
+                Poke = dbConnect.FromJson_Pokemon.ToList();
 
-                
+                List<FromJson_Pokemon> FPDEL = new List<FromJson_Pokemon>();
+                FPDEL = (from a in Poke where a.id == ID select a).ToList();
+                Poke.Remove(FPDEL[0]);
+                dbConnect.FromJson_Pokemon.Remove(FPDEL[0]);
+
+                dbConnect.SaveChanges();
+                abilities = dbConnect.abilities.ToList();
                 ability = dbConnect.ability.ToList();
                 sprites = dbConnect.Sprites.ToList();
                 other = dbConnect.Other.ToList();
@@ -88,7 +94,7 @@ namespace pokedex.Controllers
                 types = dbConnect.types.ToList();
 
             }
-
+           
             int pageSize = 12;
             if (pg < 1) pg = 1;
 
@@ -97,16 +103,10 @@ namespace pokedex.Controllers
             int recSkin = (pg - 1) * pageSize;
             var data = Poke.Skip(recSkin).Take(pager.PageSize).ToList();
             ViewBag.Pager = pager;
-            return PartialView(data);
+            return View(data);
         }
 
-        public IActionResult ClearView()
-        {
-            // Ваш код очищення view
-            return PartialView(null);
-        }
-
-
+     
 
 
 
