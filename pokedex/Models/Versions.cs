@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace pokedex.Models
 {
+   
     public class Versions
     {
         [ForeignKey("GenerationIId")]

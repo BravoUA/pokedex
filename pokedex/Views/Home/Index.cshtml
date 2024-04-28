@@ -21,11 +21,17 @@
         {
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="pokemon-card">
-                    <img src="@Model[i]" alt="@Model[i].Name<">
+                    <img src="@Model[i].Sprites.Other.Home.FrontDefault" alt="@Model[i].Name<">
                     <div class="pokemon-info">
                         <h5 class="text-center">@Model[i].Name</h5>
+                        @{
+                            for (int j = 0; j < Model[i].abilities.Count; j++)
+                            {
+                                <p>ability: @Model[i].abilities[j].ability.name</p>
+                            }
+                        }
                         base_experience: @Model[i].BaseExperience
-                        @Model[i].Abilities[0].ability.name;
+                      
                     </div>
                 </div>
             </div>

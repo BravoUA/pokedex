@@ -22,7 +22,7 @@ namespace pokedex
                 instance = new FromJson();
             return instance;
         }
-        void From_Pars(int ParsCount = 3)
+        void From_Pars(int ParsCount = 48)
         {
 
             string json;

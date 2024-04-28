@@ -23,7 +23,7 @@ body {
 .pokemon-card {
         position: relative;
         margin: 10px;
-        width: 150px;
+        width: 250px;
         border: 2px solid #f0f0f0;
         border-radius: 10px;
         overflow: hidden;
