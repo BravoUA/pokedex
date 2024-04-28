@@ -48,3 +48,6 @@ body {
     .pokemon-card:hover .pokemon-info {
         display: block;
     }
+.buttons {
+    margin: 10px;
+}

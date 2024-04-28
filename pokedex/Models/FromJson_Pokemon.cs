@@ -65,7 +65,7 @@ namespace pokedex.Models
         public List<Stats> Stats { get; set; }
 
         [JsonProperty("types")]
-        public List<types> Types { get; set; }
+        public List<types> types { get; set; }
 
         [JsonProperty("weight")]
         public long Weight { get; set; }

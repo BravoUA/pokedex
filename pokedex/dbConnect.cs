@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using pokedex.Models;
+using Type = pokedex.Models.Type;
 
 namespace pokedex
 {
@@ -24,7 +25,10 @@ namespace pokedex
         public DbSet<Sprites> Sprites { get; set; }
 
         public DbSet<Stat> Stat { get; set; }
+        public DbSet<Type> Type { get; set; }
+        public DbSet<types> types { get; set; }
 
+        
 
 
 

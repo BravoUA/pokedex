@@ -15,6 +15,32 @@
         <div class="col-12">
             <h1 class="text-center my-5">Pokemon List</h1>
         </div>
+        <div class="row">
+            <form>
+
+            <div class="col-md-4 mb-3">
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-controller="Home" asp-action="Index" name="searchInput" id="searchInput" placeholder="Пошук...">
+
+                    </div>
+              
+            </div>
+            <div class="col-md-4 mb-3">
+                    <select onchange="document.location=this.options[this.selectedIndex].value" class="form-control" name="typeFilter" id="typeFilter">
+                    <option value="">Усі типи</option>
+                        <option value="?typeFilter=bug">Bug</option>
+                        <option value="?typeFilter=electric">Electric</option>
+                        <option value="?typeFilter=fairy">Fairy</option>
+                        <option value="?typeFilter=flying">Flying</option>
+                        <option value="?typeFilter=grass">Grass</option>
+                        <option value="?typeFilter=ground">Ground</option>
+                        <option value="?typeFilter=normal">Normal</option>
+                        <option value="?typeFilter=poison">Poison</option>
+                        <option value="?typeFilter=water">Water</option>
+                    <!-- Додайте інші типи за необхідності -->
+                </select>
+            </div>
+              </form>
     </div>
     <div class="row">
         @for (int i = 0; i < Model.Count; i++)
@@ -30,9 +56,16 @@
                                 <p>ability: @Model[i].abilities[j].ability.name</p>
                             }
                         }
+                            <p>Type: @Model[i].types[0].Type.Name</p>
                         base_experience: @Model[i].BaseExperience
                       
                     </div>
+              
+                </div>
+                <div class="buttons">
+                    <button class="btn btn-danger" onclick="deletePokemon(@Model[i].id)">Видалити</button>
+                    <button class="btn btn-primary" onclick="updatePokemon(@Model[i].id)">Оновити</button>
+
                 </div>
             </div>
         }
@@ -40,7 +73,8 @@
       
     </div>
 </div>
-<div class="container">
+<p></p>
+    <div class="container">
     @if (pager.TotalPages > 0)
     {
         <ul class="pagination justify-content-end">
@@ -60,13 +94,13 @@
                         <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@pag">@pag</a>
                     </li>
                 }
-                if (pager.CurrentPage < pager.TotalPages)
+                if (pager.CurrentPage < pager.TotalPages-1)
                 {
                     <li class="page-item">
                         <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@(pager.CurrentPage+1)">Next</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
+                        <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@(pager.TotalPages-1)">Last</a>
                     </li>
                 }
 
