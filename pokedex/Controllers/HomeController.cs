@@ -33,7 +33,7 @@ namespace pokedex.Controllers
 
         public IActionResult Index(string searchInput, string typeFilter, int pg = 1)
         {
-            // FromJson.getInstance();
+            FromJson.getInstance();
 
             using (dbConnect = new dbConnect()) {
                 abilities = dbConnect.abilities.ToList();
